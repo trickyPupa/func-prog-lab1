@@ -1,5 +1,7 @@
 defmodule LargestPrimeFactor do
-  def is_prime?(1), do: false
+  def is_prime?(n) when not is_integer(n) or n < 2, do: false
+
+  def is_prime?(n) when n < 4, do: true
 
   def is_prime?(n) do
     range = 2..round(n ** 0.5)
@@ -7,6 +9,8 @@ defmodule LargestPrimeFactor do
   end
 
   defmodule TailRecursion do
+    def solve(n) when not is_integer(n) or n < 3, do: n
+
     def solve(number) when number > 1 do
       solve(number, 2)
     end
@@ -25,9 +29,15 @@ defmodule LargestPrimeFactor do
   end
 
   defmodule Recursion do
+    def solve(n) when not is_integer(n) or n < 3, do: n
+
     def solve(n) do
-      factors = factorize(n, 2)
-      Enum.max(factors)
+      if LargestPrimeFactor.is_prime?(n) do
+        n
+      else
+        factors = factorize(n, 2)
+        Enum.max(factors)
+      end
     end
 
     defp factorize(n, i) when i * i > n do
@@ -35,7 +45,7 @@ defmodule LargestPrimeFactor do
     end
 
     defp factorize(n, i) when rem(n, i) == 0 do
-      if factorize(i, 2) == [] do
+      if LargestPrimeFactor.is_prime?(i) do
         [i | factorize(n, i + 1)]
       else
         factorize(n, i + 1)
@@ -57,6 +67,8 @@ defmodule LargestPrimeFactor do
       Enum.filter(factors, &LargestPrimeFactor.is_prime?/1)
     end
 
+    def solve(n) when not is_integer(n) or n < 3, do: n
+
     def solve(n) do
       n
       |> generate_factors()
@@ -66,6 +78,8 @@ defmodule LargestPrimeFactor do
   end
 
   defmodule Lazy do
+    def solve(n) when not is_integer(n) or n < 3, do: n
+
     def solve(n) do
       Stream.iterate(2, &(&1 + 1))
       |> Stream.take_while(&(&1 * &1 <= n))
@@ -75,7 +89,9 @@ defmodule LargestPrimeFactor do
     end
   end
 
-  defmodule SpecialLoop do
+  defmodule Loop do
+    def solve(n) when not is_integer(n) or n < 3, do: n
+
     def solve(n) do
       factors =
         for i <- 2..round(n ** 0.5), rem(n, i) == 0 and LargestPrimeFactor.is_prime?(i), do: i
@@ -85,6 +101,8 @@ defmodule LargestPrimeFactor do
   end
 
   defmodule Map do
+    def solve(n) when not is_integer(n) or n < 3, do: n
+
     def solve(n) do
       2..round(n ** 0.5)
       |> Stream.map(fn x -> if rem(n, x) == 0, do: x, else: nil end)
