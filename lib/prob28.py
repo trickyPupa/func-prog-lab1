@@ -13,7 +13,3 @@ def diagonal_sum(n):
         total += sum(corners)
     
     return total
-
-n = 1001
-result = diagonal_sum(n)
-print(result)

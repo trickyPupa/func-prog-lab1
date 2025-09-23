@@ -60,7 +60,7 @@ defmodule LargestPrimeFactor do
   defmodule Module do
     defp generate_factors(n) do
       range = 2..round(n ** 0.5)
-      Enum.filter(range, &(rem(n, &1) == 0))
+      Enum.filter(range, &(rem(n, &1) == 0)) ++ [n]
     end
 
     defp filter(factors) do
@@ -85,7 +85,7 @@ defmodule LargestPrimeFactor do
       |> Stream.take_while(&(&1 * &1 <= n))
       |> Stream.filter(&(rem(n, &1) == 0))
       |> Stream.filter(&LargestPrimeFactor.prime?/1)
-      |> Enum.max()
+      |> Enum.max(&>=/2, fn -> n end)
     end
   end
 
@@ -96,7 +96,7 @@ defmodule LargestPrimeFactor do
       factors =
         for i <- 2..round(n ** 0.5), rem(n, i) == 0 and LargestPrimeFactor.prime?(i), do: i
 
-      Enum.max(factors)
+      Enum.max(factors, &>=/2, fn -> n end)
     end
   end
 
@@ -110,7 +110,7 @@ defmodule LargestPrimeFactor do
         if is_number(x) and LargestPrimeFactor.prime?(x), do: x, else: nil
       end)
       |> Stream.filter(& &1)
-      |> Enum.max()
+      |> Enum.max(&>=/2, fn -> n end)
     end
   end
 end

@@ -2,27 +2,41 @@ defmodule NumberSpiralDiagonalsTest do
   use ExUnit.Case
   doctest NumberSpiralDiagonals
 
+  @data %{5 => 101, 1001 => 669_171_001, 1 => 1, 2 => 0, -10 => 0}
+
   test "recursion method" do
-    assert NumberSpiralDiagonals.Recursion.solve(1001) == 669_171_001
+    for key <- Map.keys(@data) do
+      assert NumberSpiralDiagonals.Recursion.solve(key) == @data[key]
+    end
   end
 
   test "tail recursion method" do
-    assert NumberSpiralDiagonals.TailRecursion.solve(1001) == 669_171_001
+    for key <- Map.keys(@data) do
+      assert NumberSpiralDiagonals.TailRecursion.solve(key) == @data[key]
+    end
   end
 
   test "module method" do
-    assert NumberSpiralDiagonals.Module.solve(1001) == 669_171_001
+    for key <- Map.keys(@data) do
+      assert NumberSpiralDiagonals.Module.solve(key) == @data[key]
+    end
   end
 
   test "map method" do
-    assert NumberSpiralDiagonals.Map.solve(1001) == 669_171_001
+    for key <- Map.keys(@data) do
+      assert NumberSpiralDiagonals.Map.solve(key) == @data[key]
+    end
   end
 
   test "loop method" do
-    assert NumberSpiralDiagonals.Loop.solve(1001) == 669_171_001
+    for key <- Map.keys(@data) do
+      assert NumberSpiralDiagonals.Loop.solve(key) == @data[key]
+    end
   end
 
   test "lazy method" do
-    assert NumberSpiralDiagonals.Lazy.solve(1001) == 669_171_001
+    for key <- Map.keys(@data) do
+      assert NumberSpiralDiagonals.Lazy.solve(key) == @data[key]
+    end
   end
 end
