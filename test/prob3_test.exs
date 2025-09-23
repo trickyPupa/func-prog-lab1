@@ -7,7 +7,7 @@ defmodule LargestPrimeFactorTest do
     assert LargestPrimeFactor.Recursion.solve(2) == 2
     assert LargestPrimeFactor.Recursion.solve(1024) == 2
     assert LargestPrimeFactor.Recursion.solve(113) == 113
-    assert LargestPrimeFactor.Recursion.solve(13195) == 29
+    assert LargestPrimeFactor.Recursion.solve(13_195) == 29
   end
 
   test "tail recursion method" do
@@ -15,8 +15,8 @@ defmodule LargestPrimeFactorTest do
   end
 
   test "is prime function" do
-    assert LargestPrimeFactor.is_prime?(6857)
-    assert not LargestPrimeFactor.is_prime?(9997)
+    assert LargestPrimeFactor.prime?(6857)
+    assert not LargestPrimeFactor.prime?(9997)
   end
 
   test "module method" do
