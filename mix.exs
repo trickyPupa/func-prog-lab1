@@ -4,8 +4,8 @@ defmodule Lab1.MixProject do
   def project do
     [
       app: :lab1,
-      version: "0.1.0",
-      elixir: "~> 1.20-dev",
+      version: "0.2.1",
+      elixir: "~> 1.18.4",
       start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
@@ -20,7 +20,7 @@ defmodule Lab1.MixProject do
 
   defp deps do
     [
-      {:dialyxir, "~> 1.4", only: [:dev], runtime: false},
+      {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false}
     ]
   end
