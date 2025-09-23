@@ -8,12 +8,12 @@
 
 **Вариант:** 3, 28
 
-**Задача 3:**
+[**Задача 3:**](https://projecteuler.net/problem=3)
 
 > The prime factors of $13195$ are $5, 7, 13$ and $29$.
 > What is the largest prime factor of the number $600851475143$?
 
-**Задача 28:**
+[**Задача 28:**](https://projecteuler.net/problem=28)
 
 > Starting with the number $1$ and moving to the right in a clockwise direction a $5$ by $5$ spiral is formed as follows:
 >
